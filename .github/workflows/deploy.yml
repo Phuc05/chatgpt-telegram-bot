@@ -23,4 +23,4 @@ jobs:
             cd /home/ubuntu/chatgpt-telegram-bot
             git pull origin main
             pip install -r requirements.txt  # Install Python dependencies
-            sudo systemctl restart myapp  # Restart the app using systemd
+            sudo systemctl restart chatgpt-telegram-bot  # Restart the app using systemd
