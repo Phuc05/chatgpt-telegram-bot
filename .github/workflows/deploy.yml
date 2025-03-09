@@ -24,4 +24,6 @@ jobs:
             git pull origin main
             source venv/bin/activate
             pip install -r requirements.txt  # Install Python dependencies
-            python bot/main.py  # Restart the app using systemd
+            # Restart the bot service
+            sudo systemctl restart chatgpt-telegram-bot
+            echo "Deployment completed successfully!"
