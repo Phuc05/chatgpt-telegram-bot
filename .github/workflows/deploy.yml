@@ -1,0 +1,26 @@
+name: Deploy to AWS EC2
+
+on:
+  push:
+    branches:
+      - main  # Deploy on push to main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: "ec2-3-106-222-228.ap-southeast-2.compute.amazonaws.com"
+          username: "ubuntu"
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd /home/ubuntu/chatgpt-telegram-bot
+            git pull origin main
+            pip install -r requirements.txt  # Install Python dependencies
+            sudo systemctl restart myapp  # Restart the app using systemd
